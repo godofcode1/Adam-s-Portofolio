@@ -164,12 +164,35 @@ allCards.forEach((card, index) => {
     lbBlurb.textContent = card.dataset.blurb;
     lightbox.classList.add('open');
     lightbox.scrollTop = 0;
+    lockScroll();
     lightboxCloseBtn.focus();
   });
 });
 
 const lightboxCloseBtn = document.getElementById('lightboxClose');
-function closeLightbox(){ lightbox.classList.remove('open'); lbImg.src=''; }
+
+function lockScroll(){
+  const y = window.scrollY;
+  document.body.dataset.scrollY = y;
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${y}px`;
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+}
+function unlockScroll(){
+  const y = parseInt(document.body.dataset.scrollY || '0', 10);
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  window.scrollTo(0, y);
+}
+
+function closeLightbox(){
+  lightbox.classList.remove('open');
+  lbImg.src = '';
+  unlockScroll();
+}
 lightboxCloseBtn.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
 document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });

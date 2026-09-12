@@ -213,7 +213,10 @@ section{ padding-bottom:64px; }
   display:flex; justify-content:space-between; gap:8px;
   color:var(--ink);
 }
-.art-frame .tag span:last-child{ color:var(--accent); font-weight:700; }
+.art-frame .tag span:first-child{
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0;
+}
+.art-frame .tag span:last-child{ color:var(--accent); font-weight:700; white-space:nowrap; flex:none; }
 
 /* ---------- featured-work carousel ---------- */
 .carousel{ position:relative; }
@@ -303,7 +306,7 @@ section{ padding-bottom:64px; }
     var(--magenta) 0%, var(--red) 16%, var(--yellow) 34%,
     var(--green) 52%, var(--cyan) 70%, var(--blue) 88%, var(--paper) 100%);
 }
-.colorbar-label{ display:flex; justify-content:space-between; font-size:11px; color:var(--text-dim); letter-spacing:.04em; }
+.colorbar-label{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 16px; font-size:11px; color:var(--text-dim); letter-spacing:.04em; }
 
 /* ============================================================
    WORKS page
@@ -367,10 +370,11 @@ figcaption{ padding:14px 16px 18px; border-top:1px solid var(--rule); }
 
 .lightbox{
   position:fixed; inset:0; z-index:300;
-  background:rgba(0,0,0,.94);
+  background:rgba(5,5,5,.97);
   display:none; align-items:flex-start; justify-content:center;
   padding:min(6vh,50px) 16px;
   overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
 }
 .lightbox.open{ display:flex; }
 .lightbox-inner{
@@ -451,6 +455,16 @@ figcaption{ padding:14px 16px 18px; border-top:1px solid var(--rule); }
   .carousel-arrows button{ width:40px; height:40px; }
   .lightbox-close{ padding:9px 12px; font-size:11px; }
   .li-title{ font-size:17px; }
+
+  .wrap{ padding:0 18px; }
+  main{ padding-top:34px; }
+  section{ padding-bottom:40px; }
+  .about-hero{ padding-bottom:36px; gap:32px; }
+  .art-frame .tag{ font-size:10px; padding:8px 10px; }
+  .hireme-banner img{ max-height:56vh; }
+  .works-head{ padding-top:28px; margin-bottom:20px; }
+  .contact-hero{ padding-top:8px; padding-bottom:26px; }
+  .contact-list{ margin-top:20px; }
 }
 
 @media (hover:none){
